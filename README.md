@@ -2,6 +2,7 @@
  -This package utilizes images and color keys to populate textures, trees, and detail meshes on a Unity terrain. The script can add assets or use existing assets associated with the terrainData. The assets are "patched" to the keys through integer lists whos indicies correspond to the indicies of the color keys and whos comma separated contents correspond to the indicies of the assets present in the terrainData. 
 
 **PLD//REQUIREMENTS:**
+
  -Unity5.3.xxx or later
  -Unity Terrain on an unique layer
 
@@ -33,7 +34,7 @@
  **Section 2 \- Adjust Variables in PLD script**
  
 	2.1 Assign Terrain Values
-	In the inspector for the GameObject housing the PLD script in your scene, link the terrain data to the script. Also, you will need to have a Layer dedicated to just the terrain which you can select from the drop down (you may need to create it). Make sure the terrain is on this layer.
+	-In the inspector for the GameObject housing the PLD script in your scene, link the terrain data to the script. Also, you will need to have a Layer dedicated to just the terrain which you can select from the drop down (you may need to create it). Make sure the terrain is on this layer.
 	
 	2.2 
 	
