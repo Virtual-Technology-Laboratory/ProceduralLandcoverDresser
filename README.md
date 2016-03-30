@@ -38,11 +38,16 @@
  **Section 2 \- Adjust Variables in PLD script**
  
 	2.1 Assign Terrain Values
-	- In the inspector for the GameObject housing the PLD script in your scene, link the terrain data to the script. Also, you will need to have a Layer dedicated to just the terrain which you can select from the drop down (you may need to create it). Make sure the terrain is on this layer.
+	- In the inspector for the GameObject housing the PLD script in your scene, link the terrain data to the script.
 	
-	2.2 
+	2.2 Place Terrain in unique layer.
+	- You will need to have a Layer dedicated to just the terrain which you can select from the drop down (you may need to create it).
 	
 **Section 3 \- Assign Key Image**
+
+	3.1 Setup your key image texture in the Project window
+	
+	3.2 Assign the texture file to the 'Key Image' in the PLD inspector
 
 **Section 4 \- Populate Lists**
 
