@@ -79,7 +79,7 @@
 	5.2 Press a 'Populate' button in the PLD inspector
 	- With the simulation running, choose one asset to be populated at a time
 	- Once you've checked that each asset type populates as expected, you can make changes and repeat
-	- For a final pass, use the 'Populate All' button (NOTE: Could take a while)
+	- For a final pass, use the 'Populate All' button (NOTE: Using the All button could take a while)
 
 **Section 6 \- Save out Terrain/Script Objects**
 
