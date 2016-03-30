@@ -1,14 +1,39 @@
-# ProceduralLandcoverDresser
-Dress/Populate a Unity3D Terrain using the built-in terrainData asset lists and an image key
-
-ProceduralLandcoverDresser//SUMMARY:
+**ProceduralLandcoverDresser//SUMMARY:**
  -This package utilizes images and color keys to populate textures, trees, and detail meshes on a Unity terrain. The script can add assets or use existing assets associated with the terrainData. The assets are "patched" to the keys through integer lists whos indicies correspond to the indicies of the color keys and whos comma separated contents correspond to the indicies of the assets present in the terrainData. 
 
-PLD//REQUIREMENTS:
+**PLD//REQUIREMENTS:**
  -Unity5.3.xxx or later
  -Unity Terrain on an unique layer
 
-PLD//SETUP:
+**PLD//SETUP:**
+ **Overview**
+	1. Add Scripts
+	2. Adjust Variables in PLD Script
+	3. Assign Key Image
+	4. (optional) Use CSVReader and TerrainAssetInitializer OR manually fill in color keys and TerrainData assets(e.g. textures, trees, grasses)
+	5. Assign Prototypes to Keys
+	6. Run Simulation
+	7. Populate
+	8. Save out Terrain/Script Objects
+ 
+ **Section 1**
+	1.1 Add, create, or import a terrain object
+
+	1.2 Add the PLD script to a GameObject in your scene
+	-This could be the terrain object or any other object you wich to use to house the PLD scripts.
+
+	1.3 (optional) Add the CSVReader to a GameObject in your scene
+	-If you intend to use a Comma Separated Value sheet to fill in your keys then plug it in here. -As of 0.0.0 it only reads floating point values into colors.
+
+	1.4 (optional) Add the TerrainAssetInitializer to your terrain
+	-If you would like to save the assets you are adding to the terrain data then use the TerrainAssetInitializer script. -Once setup, the GameObject housing the script can be exported as a package along with the assets used to make future importing easier. -As of 0.0.0 this feature imports all assets with default settings which might require further customization in the terrain data interface.	
+
+ **Section 2**
+	2.1 Assign Terrain Values
+	In the inspector for the GameObject housing the PLD script in your scene, link the terrain data to the script. Also, you will need to have a Layer dedicated to just the terrain which you can select from the drop down (you may need to create it). Make sure the terrain is on this layer.
+	
+	2.2 
+	
 Base
  -Add the Procedural Landcover Dresser script to the terrain you wish to populate.
  -In the inspector, link the terrainData and the reference image to be used.
@@ -32,10 +57,10 @@ PopulatingAssets
  -To populate the assets onto the terrain, first play the simulation. This initializes the lists of assets and does an error check to ensure that necessary values are present. 
  -Then, press one of the "Populate X" buttons. After a brief pause, the assets should be populated onto the terrain in the appropriate key related areas.
 
-PLD//SAVING:
+**PLD//SAVING:**
  -If you would like to save your setup,  add the terrain object to a new prefab and export the prefab as a package including the dependants. 
 
-PLD//NOTES:
+**PLD//NOTES:**
  -If you find that your assets are not populating in appropriate areas, add some solid color swatches to your terrain(RGBW provided in demo) and simplify your Texture Assets to just those swatch texture to get a clear picture of how your Landcover Image is being read onto the terrain. You may need to do some combination of rotations and horzontal/vertical flipping of your key image to have the data correlate to your terrain appropriately. In the demo you will notice a difference in the orientations of the key, texture, and heightmap images. The Fernan_FBFM40Key image is flipped horizontally and rotated 90deg compared to the Fernan_FBFM40Tex image(done in Photoshop). 
 
 -------------------------------------------
