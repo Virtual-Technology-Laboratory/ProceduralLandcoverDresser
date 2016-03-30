@@ -6,34 +6,57 @@
  -Unity Terrain on an unique layer
 
 **PLD//SETUP:**
+
  **Overview**
+ 
 	1. Add Scripts
 	2. Adjust Variables in PLD Script
 	3. Assign Key Image
-	4. (optional) Use CSVReader and TerrainAssetInitializer OR manually fill in color keys and TerrainData assets(e.g. textures, trees, grasses)
-	5. Assign Prototypes to Keys
-	6. Run Simulation
-	7. Populate
-	8. Save out Terrain/Script Objects
+	4. Populate Lists
+	5. Run Simulation
+	6. Populate
+	7. Save out Terrain/Script Objects
  
- **Section 1**
-	1.1 Add, create, or import a terrain object
+ **Section 1 \- Add Scripts**
 
-	1.2 Add the PLD script to a GameObject in your scene
+	1.1 Add, create, or import a terrain object.
+
+	1.2 Add the PLD script to a GameObject in your scene.
 	-This could be the terrain object or any other object you wich to use to house the PLD scripts.
 
-	1.3 (optional) Add the CSVReader to a GameObject in your scene
+	1.3 (optional) Add the CSVReader to a GameObject in your scene.
 	-If you intend to use a Comma Separated Value sheet to fill in your keys then plug it in here. -As of 0.0.0 it only reads floating point values into colors.
 
-	1.4 (optional) Add the TerrainAssetInitializer to your terrain
+	1.4 (optional) Add the TerrainAssetInitializer to your terrain.
 	-If you would like to save the assets you are adding to the terrain data then use the TerrainAssetInitializer script. -Once setup, the GameObject housing the script can be exported as a package along with the assets used to make future importing easier. -As of 0.0.0 this feature imports all assets with default settings which might require further customization in the terrain data interface.	
 
- **Section 2**
+ **Section 2 \- Adjust Variables in PLD script**
+ 
 	2.1 Assign Terrain Values
 	In the inspector for the GameObject housing the PLD script in your scene, link the terrain data to the script. Also, you will need to have a Layer dedicated to just the terrain which you can select from the drop down (you may need to create it). Make sure the terrain is on this layer.
 	
 	2.2 
 	
+**Section 3 \- Assign Key Image**
+
+**Section 4 \- Populate Lists**
+
+	4.1 (optional) Use CSVReader 
+	
+	4.2 (optional) Use TerrainAssetInitializer 
+	
+	4.3 manually fill in and edit color keys and TerrainData assets(e.g. textures, trees, grasses),
+	
+	4.5 assign prototypes to keys
+	
+	4.6 assign weights to prototypes
+
+**Section 5 \- Run Simulation**
+
+**Section 6 \- Populate**
+
+**Section 7 \- Save out Terrain/Script Objects**
+
 Base
  -Add the Procedural Landcover Dresser script to the terrain you wish to populate.
  -In the inspector, link the terrainData and the reference image to be used.
