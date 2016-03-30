@@ -17,24 +17,28 @@
 	5. Run Simulation
 	6. Populate
 	7. Save out Terrain/Script Objects
+	8. CSVReader
+	9. TerrainAssetInitializer
  
  **Section 1 \- Add Scripts**
 
 	1.1 Add, create, or import a terrain object.
 
 	1.2 Add the PLD script to a GameObject in your scene.
-	-This could be the terrain object or any other object you wich to use to house the PLD scripts.
+	- This could be the terrain object or any other object you wich to use to house the PLD scripts.
 
 	1.3 (optional) Add the CSVReader to a GameObject in your scene.
-	-If you intend to use a Comma Separated Value sheet to fill in your keys then plug it in here. -As of 0.0.0 it only reads floating point values into colors.
+	- If you intend to use a Comma Separated Value sheet to fill in your keys then plug it in here. -As of 0.0.0 it only reads floating point values into colors.
 
 	1.4 (optional) Add the TerrainAssetInitializer to your terrain.
-	-If you would like to save the assets you are adding to the terrain data then use the TerrainAssetInitializer script. -Once setup, the GameObject housing the script can be exported as a package along with the assets used to make future importing easier. -As of 0.0.0 this feature imports all assets with default settings which might require further customization in the terrain data interface.	
+	- If you would like to save the assets you are adding to the terrain data then use the TerrainAssetInitializer script. 
+	- Once setup, the GameObject housing the script can be exported as a package along with the assets used to make future importing easier. 
+	- As of 0.0.0 this feature imports all assets with default settings which might require further customization in the terrain data interface.	
 
  **Section 2 \- Adjust Variables in PLD script**
  
 	2.1 Assign Terrain Values
-	-In the inspector for the GameObject housing the PLD script in your scene, link the terrain data to the script. Also, you will need to have a Layer dedicated to just the terrain which you can select from the drop down (you may need to create it). Make sure the terrain is on this layer.
+	- In the inspector for the GameObject housing the PLD script in your scene, link the terrain data to the script. Also, you will need to have a Layer dedicated to just the terrain which you can select from the drop down (you may need to create it). Make sure the terrain is on this layer.
 	
 	2.2 
 	
@@ -42,21 +46,47 @@
 
 **Section 4 \- Populate Lists**
 
-	4.1 (optional) Use CSVReader 
+	4.1 (optional) CSVReader
+	- Use the CSVReader script to populate the PLD Image Color Key list from a file.
+	- See Section 8 for CSVReader setup.
 	
 	4.2 (optional) Use TerrainAssetInitializer 
+	- Use the TerrainAssetInitializer script to populate the terrain data with assets as generic prototypes
+	- See Section 9 for TerrainAssetInitializaer setup
 	
-	4.3 manually fill in and edit color keys and TerrainData assets(e.g. textures, trees, grasses),
+	4.3 Add and edit color keys in the PLD inspector
+
+	4.4 Add TerrainData assets(e.g. textures, trees, grasses) to the terrain using the default Unity Terrain interface.
+	- When adding textures, note that the first texture added (Element 0) will automatically cover the terrain.
 	
-	4.5 assign prototypes to keys
+	4.5 Assign prototypes to keys
+	- Fill in the 'TextureAssets' list with integer values correlating to the index of the textures as they appear in the terrain data list.
+	- Use only one integer per list field.
+	- Each index represents the corresponding color key (e.g. TextureAsset Element4 is used wherever ImageColorKey Element4 is found).
+	- The list's length should match the length of the Image Color Key list.
 	
-	4.6 assign weights to prototypes
+	4.6 Assign weights to prototypes.
+	- Apply relative weight values to augment the distribution of Tree and Detail assets during population where there are more than one asset listed per key.
+	- The length of these lists should match the number of prototypes visible in the terrain data.
+	- Each element corresponds to the index of the prototype.
+	- The number assigned is used for relative distribution, with the heigher number being distributed more frequently.
 
 **Section 5 \- Run Simulation**
 
-**Section 6 \- Populate**
+	5.1 Run the simulation
+	- This initializes the asset lists and prepares the data to be populated
+	
+	5.2 Press a 'Populate' button in the PLD inspector
+	- With the simulation running, choose one asset to be populated at a time
+	- Once you've checked that each asset type populates as expected, you can make changes and repeat
+	- For a final pass, use the 'Populate All' button (NOTE: Could take a while)
 
-**Section 7 \- Save out Terrain/Script Objects**
+**Section 6 \- Save out Terrain/Script Objects**
+
+**Section 8 \- CSVReader**
+
+**Section 9 \- TerrainAssetInitializer**
+
 
 Base
  -Add the Procedural Landcover Dresser script to the terrain you wish to populate.
@@ -82,7 +112,7 @@ PopulatingAssets
  -Then, press one of the "Populate X" buttons. After a brief pause, the assets should be populated onto the terrain in the appropriate key related areas.
 
 **PLD//SAVING:**
- -If you would like to save your setup,  add the terrain object to a new prefab and export the prefab as a package including the dependants. 
+ -If you would like to save your setup, you can add your terrain and/or script object to a prefab and export the prefab as a package. 
 
 **PLD//NOTES:**
  -If you find that your assets are not populating in appropriate areas, add some solid color swatches to your terrain(RGBW provided in demo) and simplify your Texture Assets to just those swatch texture to get a clear picture of how your Landcover Image is being read onto the terrain. You may need to do some combination of rotations and horzontal/vertical flipping of your key image to have the data correlate to your terrain appropriately. In the demo you will notice a difference in the orientations of the key, texture, and heightmap images. The Fernan_FBFM40Key image is flipped horizontally and rotated 90deg compared to the Fernan_FBFM40Tex image(done in Photoshop). 
