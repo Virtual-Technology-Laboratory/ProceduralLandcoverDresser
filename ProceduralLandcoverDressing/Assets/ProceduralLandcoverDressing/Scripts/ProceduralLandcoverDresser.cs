@@ -18,8 +18,8 @@ namespace VTL.ProceduralLandcoverDresser
 	{
 		public TerrainData terrainData;
 		public LayerMask terrainLayer;
-		public Texture2D landcoverImage;
-		public List<Color32> landcoverImageKey = new List<Color32>();
+		public Texture2D keyImage;
+		public List<Color32> ImageColorKey = new List<Color32>();
 		[Space(10)]
 
 		public bool textureBlur;
@@ -54,6 +54,11 @@ namespace VTL.ProceduralLandcoverDresser
 		public List<float> detailWeights = new List<float>();
 		[Space(10)]
 
+		[HideInInspector]
+		public int treeCount;
+		[HideInInspector]
+		public int detailCount;
+
 		private bool pldReady = false;
 		private bool treeEmpty = true;
 		private bool detailEmpty = true;
@@ -67,7 +72,7 @@ namespace VTL.ProceduralLandcoverDresser
 			if (ErrorCheck())
 				return;
 
-			if (landcoverImageKey.Count == 0) 
+			if (ImageColorKey.Count == 0) 
 			{
 				Debug.Log ("No Landcover Image Key data found!");
 				return;
@@ -81,7 +86,7 @@ namespace VTL.ProceduralLandcoverDresser
 		IEnumerator ProcessLists()
 		{
 			// Front load the assetList
-			for (int i = 0; i < landcoverImageKey.Count; i++) 
+			for (int i = 0; i < ImageColorKey.Count; i++) 
 			{
 				assetList.Add (new List<List<int>> ());
 
@@ -228,12 +233,12 @@ namespace VTL.ProceduralLandcoverDresser
 
 					float normalX = (float)x / (float)terrainData.alphamapWidth;
 					float normalY = (float)y / (float)terrainData.alphamapHeight;
-					Color32 keyColor = landcoverImage.GetPixel ((int)((float)landcoverImage.width * normalX), (int)((float)landcoverImage.height * normalY));
-					int key = landcoverImageKey.FindIndex(k => k.Equals(keyColor));
+					Color32 keyColor = keyImage.GetPixel ((int)((float)keyImage.width * normalX), (int)((float)keyImage.height * normalY));
+					int key = ImageColorKey.FindIndex(k => k.Equals(keyColor));
 
 					if (key == -1) 
 					{
-						Debug.LogError (string.Format ("Color ({0}) not recognized in landcoverImageKey", keyColor));
+						Debug.LogError (string.Format ("Color ({0}) not recognized in ImageColorKey", keyColor));
 						continue;
 					}
 
@@ -274,9 +279,9 @@ namespace VTL.ProceduralLandcoverDresser
 			{
 				List<TreeInstance> treeList = new List<TreeInstance> ();
 
-				int x, y, treeCount = 0, treeNoHit = 0;
+				int x, y, treeNoHit = 0;
 				Vector3 offset = transform.position;
-				Vector2 pxSize = new Vector2 (terrainData.size.x / (float)landcoverImage.width, terrainData.size.z / (float)landcoverImage.height);
+				Vector2 pxSize = new Vector2 (terrainData.size.x / (float)keyImage.width, terrainData.size.z / (float)keyImage.height);
 				Vector2 treeTotal = new Vector2 (terrainData.size.x / treeSpacing, terrainData.size.z / treeSpacing);
 
 				for (y = 0; y < treeTotal.y; y++) 
@@ -293,12 +298,12 @@ namespace VTL.ProceduralLandcoverDresser
 						if (UnityEngine.Random.value < (treeDeath + ((1f - treeDeath) * (1f - treeDeathModifier))))
 							continue;	
 
-						Color32 keyColor = landcoverImage.GetPixel ((int)(treePos.x / pxSize.x), (int)(treePos.z / pxSize.y));
-						int key = landcoverImageKey.FindIndex (k => k.Equals (keyColor));
+						Color32 keyColor = keyImage.GetPixel ((int)(treePos.x / pxSize.x), (int)(treePos.z / pxSize.y));
+						int key = ImageColorKey.FindIndex (k => k.Equals (keyColor));
 
 						if (key == -1) 
 						{
-							Debug.LogError (string.Format ("Color ({0}) not recognized in landcoverImageKey", keyColor));
+							Debug.LogError (string.Format ("Color ({0}) not recognized in ImageColorKey", keyColor));
 							continue;
 						}
 
@@ -372,8 +377,7 @@ namespace VTL.ProceduralLandcoverDresser
 			{
 				terrainData.SetDetailLayer (0, 0, layer, new int[terrainData.detailHeight, terrainData.detailWidth]);
 			}
-
-			int detailCount = 0;
+				
 			List<int[,]> detailMaps = new List<int[,]> ();
 
 			if(!detailEmpty)
@@ -389,13 +393,13 @@ namespace VTL.ProceduralLandcoverDresser
 					{
 						float normalX = (float)x / (float)terrainData.detailWidth;
 						float normalY = (float)y / (float)terrainData.detailHeight;
-						Color keyColor = landcoverImage.GetPixel ((int)((float)landcoverImage.width * normalX), (int)((float)landcoverImage.height * normalY));
+						Color keyColor = keyImage.GetPixel ((int)((float)keyImage.width * normalX), (int)((float)keyImage.height * normalY));
 
-						int key = landcoverImageKey.FindIndex(k => k == keyColor);
+						int key = ImageColorKey.FindIndex(k => k == keyColor);
 
 						if (key == -1) 
 						{
-							Debug.LogError (string.Format ("Color ({0}) not recognized in landcoverImageKey", keyColor));
+							Debug.LogError (string.Format ("Color ({0}) not recognized in ImageColorKey", keyColor));
 							continue;
 						}
 
@@ -470,9 +474,9 @@ namespace VTL.ProceduralLandcoverDresser
 
 		int FindKey (Color test, Vector2 loc)
 		{
-			for (int i = 0; i < landcoverImageKey.Count; i++) 
+			for (int i = 0; i < ImageColorKey.Count; i++) 
 			{
-				if (test == landcoverImageKey [i])
+				if (test == ImageColorKey [i])
 					return i;
 			}
 
@@ -634,7 +638,7 @@ namespace VTL.ProceduralLandcoverDresser
 				return true;
 			}
 
-			if (landcoverImage == null) 
+			if (keyImage == null) 
 			{
 				Debug.LogError ("Set LandcoverImage in inspector!");
 				return true;
@@ -651,10 +655,8 @@ namespace VTL.ProceduralLandcoverDresser
 	}//- end class
 		
 	//TODO
-	//create swatch generator
 	//tryparse applications in processing method
-	//Noise Generator Seamless perlin?
-	//ReadOnly var setups in editor {Tree Count; Key Image Resolution;}
+	//Noise Generator Seamless perlin?}
 	//Detail Density Maps
 	//Alpha map for weights
 	//Heightmap Manipulation based on keys
@@ -672,4 +674,7 @@ namespace VTL.ProceduralLandcoverDresser
 	//toggle alphaMap density
 	//Test GDAL process for geoTiff
 	//ClearAsset Confirmation
+	//ReadOnly var setups in editor {Tree Count; Key Image Resolution;
+
+
 }

@@ -157,6 +157,8 @@ GameObject:
   - 218: {fileID: 918601210}
   - 154: {fileID: 918601209}
   - 114: {fileID: 918601213}
+  - 114: {fileID: 918601214}
+  - 114: {fileID: 918601212}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -217,6 +219,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &918601212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 918601208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99631d8a2b06b43448a46e86d1230eb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  addTextures: []
+  addTrees: []
+  addGrasses: []
+  addDetailMeshes: []
+  addObjectsOverwrite: 0
 --- !u!114 &918601213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,6 +284,24 @@ MonoBehaviour:
   - 1
   - 0.001
   - 1
+--- !u!114 &918601214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 918601208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2e77879847c3840a48949989e5597d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pld: {fileID: 0}
+  fileName: 
+  dataRows: 0
+  dataColumns: 0
+  skipRows: 0
+  skipColumns: 0
+  imageKeyReconciliation: 0
 --- !u!1 &1056581102
 GameObject:
   m_ObjectHideFlags: 0

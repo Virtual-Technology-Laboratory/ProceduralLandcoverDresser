@@ -27,9 +27,9 @@ namespace VTL.ProceduralLandcoverDresser
 
 			//Insert ReadOnly Vars
 
-			GUILayout.Label ("Key Image Resolution:");
-			GUILayout.Label ("Tree Total:");
-			GUILayout.Label ("Detail Total:");
+			GUILayout.Label (string.Format("KeyImage Resolution: ({0},{1})", PLD.keyImage.width, PLD.keyImage.height));
+			GUILayout.Label ("Tree Total:" + PLD.treeCount);
+			GUILayout.Label ("Detail Total:" + PLD.detailCount);
 
 			GUILayout.Space (20);
 

@@ -66,7 +66,7 @@ namespace VTL.ProceduralLandcoverDresser
 					
 			}
 
-			print ("New LandcoverKeys: " + newKeyColors.Count);
+			print ("New keyKeys: " + newKeyColors.Count);
 
 			switch(output)
 			{
@@ -79,9 +79,9 @@ namespace VTL.ProceduralLandcoverDresser
 
 			default:
 				if (imageKeyReconciliation) 
-					pld.landcoverImageKey = ReconcileColors (newKeyColors);
+					pld.ImageColorKey = ReconcileColors (newKeyColors);
 				else 
-					pld.landcoverImageKey = newKeyColors;
+					pld.ImageColorKey = newKeyColors;
 				break;
 
 			}
@@ -92,7 +92,7 @@ namespace VTL.ProceduralLandcoverDresser
 
 		List<Color32> ReconcileColors(List<Color32> keys)
 		{
-			Color32[] imgColors = pld.landcoverImage.GetPixels32 ();
+			Color32[] imgColors = pld.keyImage.GetPixels32 ();
 
 			imgColors = imgColors.Distinct ().ToArray (); // Remove duplicate colors
 

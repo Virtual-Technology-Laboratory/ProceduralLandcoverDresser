@@ -1,0 +1,29 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{7A7C0FF5-6E12-BA56-AEDB-2DFB2090C34A}") = "ProceduralLandcoverDressing", "Assembly-CSharp.csproj", "{668CB195-21B2-FA79-60B9-185B1C47D897}"
+EndProject
+Project("{7A7C0FF5-6E12-BA56-AEDB-2DFB2090C34A}") = "ProceduralLandcoverDressing", "Assembly-CSharp-Editor.csproj", "{5AD993B3-5120-30CA-9E63-4E287C64FB9C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{668CB195-21B2-FA79-60B9-185B1C47D897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{668CB195-21B2-FA79-60B9-185B1C47D897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{668CB195-21B2-FA79-60B9-185B1C47D897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{668CB195-21B2-FA79-60B9-185B1C47D897}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AD993B3-5120-30CA-9E63-4E287C64FB9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AD993B3-5120-30CA-9E63-4E287C64FB9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AD993B3-5120-30CA-9E63-4E287C64FB9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AD993B3-5120-30CA-9E63-4E287C64FB9C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
