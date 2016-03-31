@@ -15,10 +15,9 @@
 	3. Assign Key Image
 	4. Populate Lists
 	5. Run Simulation
-	6. Populate
-	7. Save out Terrain/Script Objects
-	8. CSVReader
-	9. TerrainAssetInitializer
+	6. Save out Terrain/Script Objects
+	7. CSVReader
+	8. TerrainAssetInitializer
  
  **Section 1 \- Add Scripts**
 
@@ -53,11 +52,11 @@
 
 	4.1 (optional) CSVReader
 	- Use the CSVReader script to populate the PLD Image Color Key list from a file.
-	- See Section 8 for CSVReader setup.
+	- See Section 7 for CSVReader setup.
 	
 	4.2 (optional) Use TerrainAssetInitializer 
 	- Use the TerrainAssetInitializer script to populate the terrain data with assets as generic prototypes
-	- See Section 9 for TerrainAssetInitializaer setup
+	- See Section 8 for TerrainAssetInitializaer setup
 	
 	4.3 Add and edit color keys in the PLD inspector
 
@@ -78,58 +77,54 @@
 
 **Section 5 \- Run Simulation**
 
-	5.1 Run the simulation
-	- This initializes the asset lists and prepares the data to be populated
+	5.1 Run the simulation.
+	- This initializes the asset lists and prepares the data to be populated.
 	
-	5.2 Press a 'Populate' button in the PLD inspector
-	- With the simulation running, choose one asset to be populated at a time
-	- Once you've checked that each asset type populates as expected, you can make changes and repeat
-	- For a final pass, use the 'Populate All' button (NOTE: Using the All button could take a while)
+	5.2 Press a 'Populate' button in the PLD inspector.
+	- With the simulation running, choose one asset to be populated at a time.
+	- Once you've checked that each asset type populates as expected, you can make changes and repeat.
+	- For a final pass, use the 'Populate All' button (NOTE: Using the All button could take a while).
+	
+	5.3 Notes on the clear buttons.
+	- Use the clear buttons to remove all of a single category or all terrain assets from the terrain.
+	- These buttons can be pressed even if the simulation is not/has not been run.
+	- There is a confirmation dialogue to prevent accedents.
 
 **Section 6 \- Save out Terrain/Script Objects**
 
-	6.1 Create a new prefab object to contain the modified terrain or script object
+	6.1 Create a new prefab object to contain the modified terrain or script object.
 	
-	6.2 Export the prefab including any dependant assets and the terrain data
+	6.2 Export the prefab including any dependant assets and the terrain data.
 
 **Section 7 \- CSVReader**
 
-	7.1 Place the Comma Separated Value file in a case sensitive folder labeled 'Resources'
-	- The folder can exist anywhere in the project Assets folder
+	7.1 Place the Comma Separated Value file in a case sensitive folder labeled 'Resources'.
+	- The folder can exist anywhere in the project Assets folder.
 
-	7.2 Assign variables in inspector
-	- Create a link to the PLD script
-	- Fill in the Filename, excluding the suffix
-	- 
+	7.2 Assign variables in the inspector.
+	- Create a link to the PLD script.
+	- Fill in the Filename, excluding the suffix.
+	- Input the total number of data rows and columns.
+	- Input the number of rows and columns to skip (e.g. headers, descriptors, etc.).
+	
+	7.3 Press a button.
+	- Use the 'Image Key Reconciliation' check to run a pass which will remove discrepencies between the Color32 list as read from the CSV file and the actual PLD key image pixel colors.
+	- The 'Add ImageKey to PLD' button will push the data values into a Color32 list and copy it into the PLD script
+	- The 'Create Swatches' button will create a 16px swatch texture using the colors in the color key. This is useful to visualize where key colors are when populated on the terrain.
 
 **Section 8 \- TerrainAssetInitializer**
 
+	8.1 Import all assets to be used into the project(must be present in Assets folder).
+	- Be sure that all textures are set to 'Repeat'.
+	
+	8.2 Place this script on the terrain.
+	- As of build 0.0.0 the script must be placed on the terrain. This is planned to be made independant.
+	
+	8.3 Fill the lists.
+	- Add assets from the project folder to the TerrainAssetInitializer inspector.
+	- All assets will be populated using generic setups. Individual modifications must be made after this script is run using the terrain inspector.
+	- Assets will be added to the terrain data in the order they appear in the lists
 
-Base
- -Add the Procedural Landcover Dresser script to the terrain you wish to populate.
- -In the inspector, link the terrainData and the reference image to be used.
- -Select the layer of the terrain in the attribute "Terrain Layer"
- -Assign Texture/Tree/Detail attributes according to preference (see demo)
- -Assign Landcover Image Key values which correspond to the pixel colors present in the Landcover Image. These RGB float values suppose a normalized 0-1 value. This can be populated from a CSV file (see CSVImageKeys section below).
- -If the intent is to store this setup as a template, use the "Add X" attributes to contain and assign textures,trees,grasses,and detail meshes to the scene. Once your assets have been placed in the appropriate lists, press the "Add Objects" button to push the lists into the TerrainData (does not require the simulation to be playing). The assets can then be further edited using the Unity terrain interface.
- -In the "x Assets" attributes, change the list size to reflect the number of keys in the Landcover Image Key list. Each element corresponds to a key. The contents of the elements are comma separated integers corresponding to the index of the asset to be deployed in that key. Example: to have the first two trees present in the terrainData to show up in key 4(starting from 0), the Element 4 of the Tree Assets attribute should read "0,1". This will populate the tree prototypes 0 and 1 wherever key 4 is found.
-
-CSVImageKeys
- -If you are drawing your color key values from a CSV file, add the ProceduralLandcoverDresserCSVReader to your terrain object alongside the ProceduralLandcoverDresser script.
- -Place the CSV file you wish to parse into a "Resources" folder somewhere in the Unity Assets folder(you might have to make it). Naming of the folder is critical and case sensitive.  
- -In the inspector for the terrain object in your scene, under the CSVReader script, add the ProceduralLandcoverDresser script which is on said terrain to the "Pld" attribute.
- -Type the name of your file(without suffix) into the "File Name" attribute
- -Enter how many rows and columns of data there are
- -If rows/columns are to be skiped to get to the raw data (like skipping headers or labels) enter those in the "Skip X" attributes
- -Check the Image Key Reconciliation toggle (requires Landcover Image to be setup in ProceduralLandcoverDresser script) to ensure matching colors between the CSV and the provided key colors.
- -Press the Add ImageKey button (does not require simulation to be playing)
-
-PopulatingAssets
- -To populate the assets onto the terrain, first play the simulation. This initializes the lists of assets and does an error check to ensure that necessary values are present. 
- -Then, press one of the "Populate X" buttons. After a brief pause, the assets should be populated onto the terrain in the appropriate key related areas.
-
-**PLD//SAVING:**
- -If you would like to save your setup, you can add your terrain and/or script object to a prefab and export the prefab as a package. 
 
 **PLD//NOTES:**
  -If you find that your assets are not populating in appropriate areas, add some solid color swatches to your terrain(RGBW provided in demo) and simplify your Texture Assets to just those swatch texture to get a clear picture of how your Landcover Image is being read onto the terrain. You may need to do some combination of rotations and horzontal/vertical flipping of your key image to have the data correlate to your terrain appropriately. In the demo you will notice a difference in the orientations of the key, texture, and heightmap images. The Fernan_FBFM40Key image is flipped horizontally and rotated 90deg compared to the Fernan_FBFM40Tex image(done in Photoshop). 
