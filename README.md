@@ -88,9 +88,21 @@
 
 **Section 6 \- Save out Terrain/Script Objects**
 
-**Section 8 \- CSVReader**
+	6.1 Create a new prefab object to contain the modified terrain or script object
+	
+	6.2 Export the prefab including any dependant assets and the terrain data
 
-**Section 9 \- TerrainAssetInitializer**
+**Section 7 \- CSVReader**
+
+	7.1 Place the Comma Separated Value file in a case sensitive folder labeled 'Resources'
+	- The folder can exist anywhere in the project Assets folder
+
+	7.2 Assign variables in inspector
+	- Create a link to the PLD script
+	- Fill in the Filename, excluding the suffix
+	- 
+
+**Section 8 \- TerrainAssetInitializer**
 
 
 Base
