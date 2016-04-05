@@ -249,15 +249,9 @@ MonoBehaviour:
   terrainData: {fileID: 15600000, guid: 0ccd0d316fbc6e440961a069dd7fa770, type: 2}
   terrainLayer:
     serializedVersion: 2
-    m_Bits: 0
-  landcoverImage: {fileID: 2800000, guid: 4cf019d4ada88874394a6353a012d3b9, type: 3}
-  landcoverImageKey:
-  - serializedVersion: 2
-    rgba: 4294967294
-  - serializedVersion: 2
-    rgba: 4294967294
-  - serializedVersion: 2
-    rgba: 4294967294
+    m_Bits: 256
+  keyImage: {fileID: 0}
+  ImageColorKey: []
   textureBlur: 0
   textureBlurSize: 6
   textureBlurExclusions: 
@@ -284,6 +278,8 @@ MonoBehaviour:
   - 1
   - 0.001
   - 1
+  treeCount: 0
+  detailCount: 0
 --- !u!114 &918601214
 MonoBehaviour:
   m_ObjectHideFlags: 0
